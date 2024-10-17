@@ -1,5 +1,38 @@
 .add-user-btn {
-    position: absolute;
-    right: 56px;
-    bottom: 56px;
+  position: absolute;
+  right: 56px;
+  bottom: 56px;
+}
+
+.user-table {
+  border-collapse: collapse;
+  tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    &:first-child {
+      cursor: unset;
+      background-color: none;   
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    cursor: pointer;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+    td {
+      height: 48px;
+      &:first-child {
+        padding-left: 16px;
+      }
+    }  
+  }
+  th {
+    color: #3f51b5;
+    font-size: 16px;
+    text-align: start;
+    height: 48px;
+    &:first-child {
+      padding-left: 16px;
+    } 
+  }
 }

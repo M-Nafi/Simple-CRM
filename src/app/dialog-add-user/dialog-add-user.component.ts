@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -10,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { CollectionReference } from '@firebase/firestore';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -23,6 +26,9 @@ import { CollectionReference } from '@firebase/firestore';
     MatNativeDateModule,
     CommonModule,
     FormsModule,
+    MatProgressBarModule,
+    MatButtonModule,
+  
   ],
   templateUrl: './dialog-add-user.component.html',
   styleUrl: './dialog-add-user.component.scss',
@@ -30,18 +36,31 @@ import { CollectionReference } from '@firebase/firestore';
 export class DialogAddUserComponent {
   user = new User();
   birthDate!: Date;
+  loading = false;
 
-  constructor(private firestore: Firestore) {}
+  constructor(
+    private firestore: Firestore,
+    private dialogRef: MatDialogRef<DialogAddUserComponent>
+  ) {}
 
   async saveUser() {
     this.user.birthDate = this.birthDate.getTime();
-    console.log('Current user is', this.user);
+    // console.log('Current user is', this.user);
+    this.loading = true;
+    await this.delay(2000);
     try {
       let usersCollection = collection(this.firestore, 'users');
-      let result = await addDoc(usersCollection, this.user.toJSON());
-      console.log('Adding user finished', result);
+      // let result = await addDoc(usersCollection, this.user.toJSON());
+      await addDoc(usersCollection, this.user.toJSON());
+      // console.log('Adding user finished', result);
+      this.dialogRef.close();
     } catch (error) {
       console.error('Error adding user: ', error);
+    } finally {
+      this.loading = false;
     }
+  }
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
