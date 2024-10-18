@@ -1,9 +1,9 @@
 .user-detail-header {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
+    flex-direction: row;
+    align-items: flex-end;
     min-height: 250px;
-    background-color: lightcoral;
+    background-color: rgb(235, 171, 171);
     color: whitesmoke;
     img {
         width: 80px;
@@ -14,13 +14,26 @@
 }
 
 .user-details {
-    margin-left: 32px;
+    margin-left: 16px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    h2 {
+        margin-bottom: 0;
+    }
+    h2, h3 {
+        text-shadow: 2px 3px 2px rgb(114, 114, 114);
+    }
 }
 
 mat-card-title {
     padding-top: 16px;
     padding-left: 16px;
+}
+
+.pin-right-upper-corner {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
