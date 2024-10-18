@@ -5,19 +5,12 @@
       <th>e-Mail</th>
       <th>City</th>
     </tr>
-    <tr>
-      <td>GHGHGH</td>
-      <td>DGBDDFG</td>
-      <td>GDFGDFG</td>
-    </tr>
-    <tr>
-      <td>FADGADFG</td>
-      <td>FAGG</td>
-      <td>AGADFGFD</td>
+    <tr *ngFor="let user of users$ | async">
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.city }}</td>
     </tr>
   </table>
-
-  <!-- <mat-card-content>Simple card</mat-card-content> -->
 </mat-card>
 
 <button

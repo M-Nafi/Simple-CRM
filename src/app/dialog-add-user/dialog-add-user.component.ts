@@ -40,19 +40,16 @@ export class DialogAddUserComponent {
 
   constructor(
     private firestore: Firestore,
-    private dialogRef: MatDialogRef<DialogAddUserComponent>
+    public dialogRef: MatDialogRef<DialogAddUserComponent>
   ) {}
 
   async saveUser() {
     this.user.birthDate = this.birthDate.getTime();
-    // console.log('Current user is', this.user);
     this.loading = true;
-    await this.delay(2000);
+    await this.delay(1500);
     try {
       let usersCollection = collection(this.firestore, 'users');
-      // let result = await addDoc(usersCollection, this.user.toJSON());
       await addDoc(usersCollection, this.user.toJSON());
-      // console.log('Adding user finished', result);
       this.dialogRef.close();
     } catch (error) {
       console.error('Error adding user: ', error);

@@ -17,11 +17,18 @@
   min-height: 56px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-color: #B4BFC5;
+  img {
+    max-width: 100%;
+    max-height: 55px;
+    border-radius: 7px;
+  }
 }
 
 mat-toolbar, mat-toolbar-row {
-  min-height: 56px;
-  height: 56px;
+  min-height: 57px;
+  height: 57px;
 }
 
 .menu-items {
