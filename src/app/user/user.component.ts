@@ -6,9 +6,10 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from '../../models/user.class';
 import { MatCardModule } from '@angular/material/card';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore'; // Richtige Imports
+import { Firestore, collectionData, collection } from '@angular/fire/firestore'; 
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -19,7 +20,8 @@ import { CommonModule } from '@angular/common';
     MatTooltipModule,
     MatDialogModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
@@ -32,7 +34,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     let usersCollection = collection(this.firestore, 'users');
-    this.users$ = collectionData(usersCollection, { idField: 'id' }) as Observable<User[]>;
+    this.users$ = collectionData(usersCollection, { idField: 'customIdName' }) as Observable<User[]>;
     this.users$.subscribe(users => {
       console.log('Received users from Firestore', users);
     });

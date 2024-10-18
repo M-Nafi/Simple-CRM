@@ -1,0 +1,26 @@
+.user-detail-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    min-height: 250px;
+    background-color: lightcoral;
+    color: whitesmoke;
+    img {
+        width: 80px;
+        height: 80px;
+        padding-left: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+.user-details {
+    margin-left: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+mat-card-title {
+    padding-top: 16px;
+    padding-left: 16px;
+}
