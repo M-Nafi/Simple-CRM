@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
@@ -63,11 +63,26 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
-  editUserDetail() {
-    this.dialog.open(DialogEditUserComponent);
+  editMenu() {
+    const dialog = this.dialog.open(DialogEditAddressComponent);
+    dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
+
+    dialog.componentInstance.addressUpdated.subscribe((updatedUser: User) => {
+      this.user = updatedUser; 
+      console.log('User address updated in detail view:', this.user);
+    });
   }
 
-  editMenu() {
-    this.dialog.open(DialogEditAddressComponent);
+  
+  editUserDetail() {
+    const dialog = this.dialog.open(DialogEditUserComponent);
+    dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
+   
+    dialog.componentInstance.userUpdated.subscribe((updatedUser: User) => {
+      this.user = updatedUser; 
+      console.log('User details updated in detail view:', this.user);
+    });
   }
 }

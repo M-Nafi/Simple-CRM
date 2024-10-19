@@ -28,7 +28,6 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     MatProgressBarModule,
     MatButtonModule,
-  
   ],
   templateUrl: './dialog-add-user.component.html',
   styleUrl: './dialog-add-user.component.scss',
